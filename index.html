@@ -69,6 +69,9 @@
       const cars = ["Saab", "Volvo", "BMW"];
       document.body.innerHTML+= `Array content = ${cars} <br>`;
       document.body.innerHTML+= `Array content[1] = ${cars[1]} <br>`;
+      const dataArray = Arrays.copyOfRange(e.message.data, 9, 24);
+      document.body.innerHTML+= `dataArray content = ${dataArray} <br>`;
+
 
       if (e.message.data[6]==0) {    // identifies patch dump
         document.body.innerHTML+= `Synth = ${e.message.data[7]} <br>`;
