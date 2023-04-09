@@ -69,7 +69,7 @@
       const cars = ["Saab", "Volvo", "BMW"];
       document.body.innerHTML+= `Array content = ${cars} <br>`;
       document.body.innerHTML+= `Array content[1] = ${cars[1]} <br>`;
-      message = e.message.data
+      var message = e.message.data
       document.body.innerHTML+= `Message content = ${message} <br>`;
 
       fullMessageAsString = String.fromCharCode.apply(null, message);
