@@ -87,7 +87,7 @@
         document.body.innerHTML+= `Synth = ${e.message.data[7]} <br>`;
 
         const message = e.message.data;
-        const patchNameData = message.slice(8,24);
+        const patchNameData = message.slice(8,25);
         const patchNameString = String.fromCharCode.apply(null, patchNameData);
         document.body.innerHTML+= `Patch name = ${patchNameString} <br>`;
 
