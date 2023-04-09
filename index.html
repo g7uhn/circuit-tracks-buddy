@@ -59,10 +59,10 @@
     const mySynthInput = WebMidi.getInputByName("Circuit Tracks")
     const mySynthOutput = WebMidi.getOutputByName("Circuit Tracks")
     
-    // Listen for and print Note On messages on Ch1
-    mySynthInput.channels[1].addListener("noteon", e => {
-      document.body.innerHTML+= `${e.note.identifier} <br>`;
-    });
+    // // Listen for and print Note On messages on Ch1
+    // mySynthInput.channels[1].addListener("noteon", e => {
+    //   document.body.innerHTML+= `${e.note.identifier} <br>`;
+    // });
 
     // Listen for and print Program Change messages on Ch1
     mySynthInput.addListener("programchange", e => {
@@ -80,19 +80,20 @@
 
     // Listen for and print Sysex messages
     mySynthInput.addListener("sysex", e => {
-      document.body.innerHTML+= `Sysex message = ${e.message.data} <br>`;
-      document.body.innerHTML+= `SysexType = ${e.message.data[6]} <br>`;
+      // document.body.innerHTML+= `Sysex message = ${e.message.data} <br>`;  // Print whole sysex message for debug
 
       if (e.message.data[6]==0) {    // identifies patch dump
+        // Print Synth number
         document.body.innerHTML+= `Synth = ${e.message.data[7]} <br>`;
 
+        // Print Patch Name
         const message = e.message.data;
         const patchNameData = message.slice(8,25);
         const patchNameString = String.fromCharCode.apply(null, patchNameData);
         document.body.innerHTML+= `Patch name = ${patchNameString} <br>`;
 
+        // Print Patch Category
         const patchCategoryData = e.message.data[25];
-        document.body.innerHTML+= `CategoryData = ${patchCategoryData} <br>`;
         document.body.innerHTML+= `Category name = ${synthPatchCategories[patchCategoryData]} <br>`;
       }
       
@@ -105,7 +106,7 @@
   </head>
   
   <body>
-    <h1>WebMidi.js Circuit Tracks Buddy v0.2</h1>
+    <h1>WebMidi.js Circuit Tracks Buddy v0.3</h1>
   </body>
 
 </html>
