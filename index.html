@@ -63,6 +63,11 @@
     // Listen for and print Sysex messages
     mySynthInput.addListener("sysex", e => {
       document.body.innerHTML+= `Sysex message = ${e.message.data} <br>`;
+      if (e.message.data[2]=0) {    // identifies patch dump
+        document.body.innerHTML+= `Synth = ${e.message.data[3]} <br>`;
+        document.body.innerHTML+= `Patch = ${e.message.data[5:20]} <br>`;
+        document.body.innerHTML+= `Categ = ${e.message.data[21]} <br>`;
+      }
       
     });
 
