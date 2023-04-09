@@ -24,7 +24,7 @@
       document.body.innerHTML+= "No device detected.";
     } else {
       WebMidi.inputs.forEach((device, index) => {
-        document.body.innerHTML+= `${index}: ${input.manufacturer}, ${input.name}, ${device.name} <br>`;
+        document.body.innerHTML+= `${index}: ${device.name} <br>`;
       });
     }
     
@@ -34,7 +34,7 @@
       document.body.innerHTML+= "No device detected.";
     } else {
       WebMidi.outputs.forEach((device, index) => {
-        document.body.innerHTML+= `${index}: ${input.manufacturer}, ${input.name}, ${device.name} <br>`;
+        document.body.innerHTML+= `${index}: ${device.name} <br>`;
       });
     }
 
@@ -51,7 +51,7 @@
   </head>
   
   <body>
-    <h1>WebMidi.js Circuit Tracks Buddy</h1>
+    <h1>WebMidi.js Circuit Tracks Buddy v0.1</h1>
   </body>
 
 </html>
