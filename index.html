@@ -91,7 +91,7 @@
         const patchNameData = message.slice(8,25);
         const patchNameString = String.fromCharCode.apply(null, patchNameData);
         document.body.innerHTML+= `Patch name = ${patchNameString} <br>`;
-        document.table.rows[0].cells[1].innerHTML=patchNameString;
+        document.getElementById('Synth1PatchName').innerHTML = patchNameString;
 
         // Print Patch Category
         const patchCategoryData = e.message.data[25];
@@ -111,14 +111,14 @@
     <!-- Table to list data  -->
     <table id="table">
       <tr>
-        <td class="Synth1Program">000</td>
-        <td class="Synth1PatchName">undefined</td>
-        <td class="Synth1PatchCategory">undefined</td>
+        <td id="Synth1Program">000</td>
+        <td id="Synth1PatchName">undefined</td>
+        <td id="Synth1PatchCategory">undefined</td>
       </tr>
       <tr>
-        <td class="Synth2Program">000</td>
-        <td class="Synth2PatchName">undefined</td>
-        <td class="Synth2PatchCategory">undefined</td>
+        <td id="Synth2Program">000</td>
+        <td id="Synth2PatchName">undefined</td>
+        <td id="Synth2PatchCategory">undefined</td>
       </tr>
     </table>
   </body>
