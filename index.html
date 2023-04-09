@@ -70,6 +70,8 @@
       document.body.innerHTML+= `Array content = ${cars} <br>`;
       document.body.innerHTML+= `Array content[1] = ${cars[1]} <br>`;
       const message = e.message.data
+      document.body.innerHTML+= `Message content = ${message} <br>`;
+      
       fullMessageAsString = message.fromCharCode.apply(null, asciiKeys);
       document.body.innerHTML+= `Message as a string = ${fullMessageAsString} <br>`;
 
