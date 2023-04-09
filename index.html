@@ -4,7 +4,7 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>WebMidi.js CT Buddy</title>
+    <title>CT Buddy</title>
 
 <script src="https://cdn.jsdelivr.net/npm/webmidi@latest/dist/iife/webmidi.iife.js"></script>  
 <script type="module">
@@ -36,25 +36,25 @@
   // Function triggered when WEBMIDI.js is ready
   function onEnabled() {
 
-    // Display available MIDI input devices
-    document.body.innerHTML+= "Input devices:<br>";
+    // // Display available MIDI input devices
+    // document.body.innerHTML+= "Input devices:<br>";
     if (WebMidi.inputs.length < 1) {
       document.body.innerHTML+= "No device detected.<br>";
-    } else {
-      WebMidi.inputs.forEach((device, index) => {
-        document.body.innerHTML+= `${index}: ${device.name} <br>`;
-      });
+    // } else {
+    //   WebMidi.inputs.forEach((device, index) => {
+    //     document.body.innerHTML+= `${index}: ${device.name} <br>`;
+    //   });
     }
     
-    // Display available MIDI output devices
-    document.body.innerHTML+= "Output devices:<br>";
-    if (WebMidi.outputs.length < 1) {
-      document.body.innerHTML+= "No device detected.<br>";
-    } else {
-      WebMidi.outputs.forEach((device, index) => {
-        document.body.innerHTML+= `${index}: ${device.name} <br>`;
-      });
-    }
+    // // Display available MIDI output devices
+    // document.body.innerHTML+= "Output devices:<br>";
+    // if (WebMidi.outputs.length < 1) {
+    //   document.body.innerHTML+= "No device detected.<br>";
+    // } else {
+    //   WebMidi.outputs.forEach((device, index) => {
+    //     document.body.innerHTML+= `${index}: ${device.name} <br>`;
+    //   });
+    // }
 
     const mySynthInput = WebMidi.getInputByName("Circuit Tracks")
     const mySynthOutput = WebMidi.getOutputByName("Circuit Tracks")
