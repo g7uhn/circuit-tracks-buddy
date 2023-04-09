@@ -38,16 +38,23 @@
       });
     }
 
-    const mySynth = WebMidi.getInputByName("Circuit Tracks")
+    const mySynthInput = WebMidi.getInputByName("Circuit Tracks")
     
-    // Listen for Note On messages on Ch1
-    mySynth.channels[1].addListener("noteon", e => {
+    // Listen for and print Note On messages on Ch1
+    mySynthInput.channels[1].addListener("noteon", e => {
       document.body.innerHTML+= `${e.note.identifier} <br>`;
     });
 
-    // Listen for Program Change messages on Ch1
-    mySynth.channels[1].addListener("programchange", e => {
+    // Listen for and print Program Change messages on Ch1
+    mySynthInput.channels[1].addListener("programchange", e => {
       document.body.innerHTML+= `PC = ${e.value} <br>`;
+      // Send sysex command to dump current preset
+
+    });
+
+    // Listen for and print Sysex messages
+    mySynthInput.addListener("sysex", e => {
+      document.body.innerHTML+= `Sysex message = ${e.message.data} <br>`;
     });
 
   }
