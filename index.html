@@ -113,6 +113,10 @@
       
     });
 
+    // Request patch dump to initialise the table values
+    mySynthOutput.sendSysex([0, 32, 41], [1, 100, 64, 0]);  // Send sysex command to dump current Synth 1 preset
+    mySynthOutput.sendSysex([0, 32, 41], [1, 100, 64, 1]);  // Send sysex command to dump current Synth 2 preset
+
   }
   
 </script>
