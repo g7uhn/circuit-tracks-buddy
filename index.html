@@ -26,6 +26,12 @@
         document.body.innerHTML+= `${index}: ${device.name} <br>`;
       });
     }
+    
+    const mySynth = WebMidi.getInputByName("Circuit Tracks MIDI")
+    
+    mySynth.channels[1].addListener("noteon", e => {
+      document.body.innerHTML+= `${e.note.name} <br>`;
+    });
 
   }
   
