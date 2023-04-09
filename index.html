@@ -59,7 +59,7 @@
     const mySynthInput = WebMidi.getInputByName("Circuit Tracks")
     const mySynthOutput = WebMidi.getOutputByName("Circuit Tracks")
 
-    const latestPCvalue = 0
+    //const latestPCvalue = 0
     
     // // Listen for and print Note On messages on Ch1
     // mySynthInput.channels[1].addListener("noteon", e => {
@@ -69,7 +69,7 @@
     // Listen for and print Program Change messages on Ch1
     mySynthInput.addListener("programchange", e => {
       document.body.innerHTML+= `PC = ${e.value} <br>`;
-      //latestPCvalue = e.value + 1;
+      const latestPCvalue = (e.value + 1);
       // Send sysex command to dump current Synth 1 preset
       mySynthOutput.sendSysex([0, 32, 41], [1, 100, 64, 0]);
     }, {channels: [1]});
@@ -77,7 +77,7 @@
     // Listen for and print Program Change messages on Ch2
     mySynthInput.addListener("programchange", e => {
       document.body.innerHTML+= `PC = ${e.value} <br>`;
-      //latestPCvalue = e.value + 1;
+      const latestPCvalue = (e.value + 1);
       // Send sysex command to dump current Synth 2 preset
       mySynthOutput.sendSysex([0, 32, 41], [1, 100, 64, 1]);
     }, {channels: [2]});
