@@ -60,35 +60,22 @@
     const mySynthOutput = WebMidi.getOutputByName("Circuit Tracks")
 
     let latestPCvalue = 0
-    
-    // // Listen for and print Note On messages on Ch1
-    // mySynthInput.channels[1].addListener("noteon", e => {
-    //   document.body.innerHTML+= `${e.note.identifier} <br>`;
-    // });
 
-    // Listen for and print Program Change messages on Ch1
+    // Listen for and print Program Change messages on Ch1 and trigger preset dump
     mySynthInput.addListener("programchange", e => {
-      document.body.innerHTML+= `PC = ${e.value} <br>`;
       latestPCvalue = (e.value + 1);
-      // Send sysex command to dump current Synth 1 preset
-      mySynthOutput.sendSysex([0, 32, 41], [1, 100, 64, 0]);
+      mySynthOutput.sendSysex([0, 32, 41], [1, 100, 64, 0]);  // Send sysex command to dump current Synth 1 preset
     }, {channels: [1]});
 
-    // Listen for and print Program Change messages on Ch2
+    // Listen for Program Change messages on Ch2 and trigger preset dump
     mySynthInput.addListener("programchange", e => {
-      document.body.innerHTML+= `PC = ${e.value} <br>`;
       latestPCvalue = (e.value + 1);
-      // Send sysex command to dump current Synth 2 preset
-      mySynthOutput.sendSysex([0, 32, 41], [1, 100, 64, 1]);
+      mySynthOutput.sendSysex([0, 32, 41], [1, 100, 64, 1]);  // Send sysex command to dump current Synth 2 preset
     }, {channels: [2]});
 
-    // Listen for and print Sysex messages
+    // Listen for Sysex messages
     mySynthInput.addListener("sysex", e => {
-      document.body.innerHTML+= `Sysex message = ${e.message.data} <br>`;  // Print whole sysex message for debug
-
       if (e.message.data[6]==0) {    // identifies patch dump
-
-        document.body.innerHTML+= `Synth = ${e.message.data[7]} <br>`;
 
         if (e.message.data[7] == 0) {   // identifies Synth 1
           document.body.innerHTML+= 'Synth 1 patch change';
@@ -97,10 +84,10 @@
           const patchNameString = String.fromCharCode.apply(null, patchNameData);
           const patchCategoryData = e.message.data[25];
 
-          // Print patch details
-          document.body.innerHTML+= `Synth = ${e.message.data[7]} <br>`;
-          document.body.innerHTML+= `Patch name = ${patchNameString} <br>`;
-          document.body.innerHTML+= `Category name = ${synthPatchCategories[patchCategoryData]} <br>`;
+          // // Print patch details
+          // document.body.innerHTML+= `Synth = ${e.message.data[7]} <br>`;
+          // document.body.innerHTML+= `Patch name = ${patchNameString} <br>`;
+          // document.body.innerHTML+= `Category name = ${synthPatchCategories[patchCategoryData]} <br>`;
 
           // Update Synth 1 table elements
           document.getElementById('Synth1Program').innerHTML = latestPCvalue;
@@ -115,12 +102,12 @@
           const patchNameString = String.fromCharCode.apply(null, patchNameData);
           const patchCategoryData = e.message.data[25];
 
-          // Print patch details
-          document.body.innerHTML+= `Synth = ${e.message.data[7]} <br>`;
-          document.body.innerHTML+= `Patch name = ${patchNameString} <br>`;
-          document.body.innerHTML+= `Category name = ${synthPatchCategories[patchCategoryData]} <br>`;
+          // // Print patch details
+          // document.body.innerHTML+= `Synth = ${e.message.data[7]} <br>`;
+          // document.body.innerHTML+= `Patch name = ${patchNameString} <br>`;
+          // document.body.innerHTML+= `Category name = ${synthPatchCategories[patchCategoryData]} <br>`;
 
-          // Update Synth 1 table elements
+          // Update Synth 2 table elements
           document.getElementById('Synth2Program').innerHTML = latestPCvalue;
           document.getElementById('Synth2PatchName').innerHTML = patchNameString;
           document.getElementById('Synth2PatchCategory').innerHTML = synthPatchCategories[patchCategoryData];
