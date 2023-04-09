@@ -9,6 +9,24 @@
 <script src="https://cdn.jsdelivr.net/npm/webmidi@latest/dist/iife/webmidi.iife.js"></script>  
 <script type="module">
 
+  // Synth patch categories
+  const synthPatchCategories = [
+    'None    ',
+    'Arp     ',
+    'Bass    ',
+    'Bell    ',
+    'Classic ',
+    'Drum    ',
+    'Keyboard',
+    'Lead    ',
+    'Motion  ',
+    'Pad     ',
+    'Poly    ',
+    'SFX     ',
+    'String  ',
+    'User 1  ',
+    'User 2  '];
+
   // Enable WEBMIDI.js and trigger the onEnabled() function when ready
   WebMidi
     .enable({sysex: true})
@@ -65,25 +83,16 @@
       document.body.innerHTML+= `Sysex message = ${e.message.data} <br>`;
       document.body.innerHTML+= `SysexType = ${e.message.data[6]} <br>`;
 
-      // Testing array syntax
-      const cars = ["Saab", "Volvo", "BMW"];
-      document.body.innerHTML+= `Array content = ${cars} <br>`;
-      document.body.innerHTML+= `Array content[1] = ${cars[1]} <br>`;
-
-      const message = e.message.data;
-      document.body.innerHTML+= `Message array = ${message} <br>`;
-      const patchName = message.slice(8,24);
-      document.body.innerHTML+= `patchName array = ${patchName} <br>`;
-
-      const fullMessageAsString = String.fromCharCode.apply(null, patchName);
-      document.body.innerHTML+= `Message as a string = ${fullMessageAsString} <br>`;
-
       if (e.message.data[6]==0) {    // identifies patch dump
         document.body.innerHTML+= `Synth = ${e.message.data[7]} <br>`;
 
-        document.body.innerHTML+= `Patch = ${Arrays.copyOfRange(e.message.data, 9, 24)} <br>`;
-      //  document.body.innerHTML+= `Patch = ${e.message.data[9:24]} <br>`;
-      //  document.body.innerHTML+= `Categ = ${e.message.data[25]} <br>`;
+        const message = e.message.data;
+        const patchNameData = message.slice(8,24);
+        const patchNameString = String.fromCharCode.apply(null, patchNameData);
+        document.body.innerHTML+= `Patch name = ${patchNameString} <br>`;
+
+        patchCategoryData = e.message.data[24];
+        document.body.innerHTML+= `CategoryData = ${synthPatchCategories = [patchCategoryData]} <br>`;
       }
       
     });
