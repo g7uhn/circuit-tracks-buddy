@@ -40,8 +40,14 @@
 
     const mySynth = WebMidi.getInputByName("Circuit Tracks")
     
+    // Listen for Note On messages on Ch1
     mySynth.channels[1].addListener("noteon", e => {
-      document.body.innerHTML+= `${e.note.name} <br>`;
+      document.body.innerHTML+= `${e.note.identifier} <br>`;
+    });
+
+    // Listen for Program Change messages on Ch1
+    mySynth.channels[1].addListener("programchange", e => {
+      document.body.innerHTML+= `PC = ${e.value} <br>`;
     });
 
   }
