@@ -91,6 +91,7 @@
         const patchNameData = message.slice(8,25);
         const patchNameString = String.fromCharCode.apply(null, patchNameData);
         document.body.innerHTML+= `Patch name = ${patchNameString} <br>`;
+        document.table.rows[0].cells[1].innerHTML=patchNameString;
 
         // Print Patch Category
         const patchCategoryData = e.message.data[25];
