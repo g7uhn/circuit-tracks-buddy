@@ -69,7 +69,8 @@
       const cars = ["Saab", "Volvo", "BMW"];
       document.body.innerHTML+= `Array content = ${cars} <br>`;
       document.body.innerHTML+= `Array content[1] = ${cars[1]} <br>`;
-      fullMessageAsString = e.message.data.fromCharCode.apply(null, asciiKeys);
+      const message = e.message.data
+      fullMessageAsString = message.fromCharCode.apply(null, asciiKeys);
       document.body.innerHTML+= `Message as a string = ${fullMessageAsString} <br>`;
 
       if (e.message.data[6]==0) {    // identifies patch dump
