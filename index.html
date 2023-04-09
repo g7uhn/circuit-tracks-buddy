@@ -60,11 +60,11 @@
     const mySynthOutput = WebMidi.getOutputByName("Circuit Tracks")
 
 
-    function initialSend() {
-      // Request patch dump to initialise the table values
-      mySynthOutput.sendSysex([0, 32, 41], [1, 100, 64, 0]);  // Send sysex command to dump current Synth 1 preset
-      mySynthOutput.sendSysex([0, 32, 41], [1, 100, 64, 1]);  // Send sysex command to dump current Synth 2 preset
-    }
+    // function initialSend() {
+    //   // Request patch dump to initialise the table values
+    //   mySynthOutput.sendSysex([0, 32, 41], [1, 100, 64, 0]);  // Send sysex command to dump current Synth 1 preset
+    //   mySynthOutput.sendSysex([0, 32, 41], [1, 100, 64, 1]);  // Send sysex command to dump current Synth 2 preset
+    // }
 
     let latestPCvalue = 0
 
@@ -154,7 +154,7 @@
     <!-- White space -->
     <br>
     <br>
-    <p style="color:rgb(177, 177, 177);">WebMidi.js Circuit Tracks Buddy v0.4<p>
+    <p style="color:rgb(177, 177, 177);">WebMidi.js Circuit Tracks Buddy v0.5<p>
 
   </body>
 
