@@ -67,8 +67,7 @@
       if (e.message.data[6]==0) {    // identifies patch dump
         document.body.innerHTML+= `Synth = ${e.message.data[7]} <br>`;
 
-        int[] patchName = Arrays.copyOfRange(e.message.data, 9, 24);
-        document.body.innerHTML+= `Patch = ${patchName} <br>`;
+        document.body.innerHTML+= `Patch = ${Arrays.copyOfRange(e.message.data[], 9, 24)} <br>`;
       //  document.body.innerHTML+= `Patch = ${e.message.data[9:24]} <br>`;
       //  document.body.innerHTML+= `Categ = ${e.message.data[25]} <br>`;
       }
