@@ -91,7 +91,7 @@
         const patchNameString = String.fromCharCode.apply(null, patchNameData);
         document.body.innerHTML+= `Patch name = ${patchNameString} <br>`;
 
-        patchCategoryData = e.message.data[24];
+        const patchCategoryData = e.message.data[24];
         document.body.innerHTML+= `CategoryData = ${synthPatchCategories[patchCategoryData]} <br>`;
       }
       
