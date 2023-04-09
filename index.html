@@ -27,7 +27,7 @@
       });
     }
     
-    const mySynth = WebMidi.getInputByName("Circuit Tracks MIDI")
+    const mySynth = WebMidi.getInputByName("Circuit Tracks")
     
     mySynth.channels[1].addListener("noteon", e => {
       document.body.innerHTML+= `${e.note.name} <br>`;
