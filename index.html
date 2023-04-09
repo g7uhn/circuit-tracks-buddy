@@ -50,7 +50,7 @@
     mySynthInput.channels[1].addListener("programchange", e => {
       document.body.innerHTML+= `PC = ${e.value} <br>`;
       // Send sysex command to dump current preset
-      mySynthOutput.sendSysex(0, 32, 41, 1, 100, 64, 0);
+      mySynthOutput.sendSysex([0, 32, 41], [1, 100, 64, 0]);
     });
 
     // Listen for and print Sysex messages
