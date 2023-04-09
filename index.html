@@ -64,6 +64,12 @@
     mySynthInput.addListener("sysex", e => {
       document.body.innerHTML+= `Sysex message = ${e.message.data} <br>`;
       document.body.innerHTML+= `SysexType = ${e.message.data[6]} <br>`;
+
+      // Testing array syntax
+      const cars = ["Saab", "Volvo", "BMW"];
+      document.body.innerHTML+= `Array content = ${cars} <br>`;
+      document.body.innerHTML+= `Array content[1] = ${cars[1]} <br>`;
+
       if (e.message.data[6]==0) {    // identifies patch dump
         document.body.innerHTML+= `Synth = ${e.message.data[7]} <br>`;
 
