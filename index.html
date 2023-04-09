@@ -49,9 +49,16 @@
     // Listen for and print Program Change messages on Ch1
     mySynthInput.addListener("programchange", e => {
       document.body.innerHTML+= `PC = ${e.value} <br>`;
-      // Send sysex command to dump current preset
+      // Send sysex command to dump current Synth 1 preset
       mySynthOutput.sendSysex([0, 32, 41], [1, 100, 64, 0]);
-    }, {channels: [1, 2]});
+    }, {channels: [1]});
+
+    // Listen for and print Program Change messages on Ch2
+    mySynthInput.addListener("programchange", e => {
+      document.body.innerHTML+= `PC = ${e.value} <br>`;
+      // Send sysex command to dump current Synth 2 preset
+      mySynthOutput.sendSysex([0, 32, 41], [1, 100, 64, 1]);
+    }, {channels: [2]});
 
     // Listen for and print Sysex messages
     mySynthInput.addListener("sysex", e => {
