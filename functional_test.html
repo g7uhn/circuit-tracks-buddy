@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>WebMidi.js CT Buddy</title>
+
+<script src="https://cdn.jsdelivr.net/npm/webmidi@latest/dist/iife/webmidi.iife.js"></script>  
+<script type="module">
+
+  // Synth patch categories
+  const synthPatchCategories = [
+    'None    ',
+    'Arp     ',
+    'Bass    ',
+    'Bell    ',
+    'Classic ',
+    'Drum    ',
+    'Keyboard',
+    'Lead    ',
+    'Motion  ',
+    'Pad     ',
+    'Poly    ',
+    'SFX     ',
+    'String  ',
+    'User 1  ',
+    'User 2  '];
+
+  // Enable WEBMIDI.js and trigger the onEnabled() function when ready
+  WebMidi
+    .enable({sysex: true})
+    .then(onEnabled)
+    .catch(err => alert(err));
+
+  // Function triggered when WEBMIDI.js is ready
+  function onEnabled() {
+
+    // Display available MIDI input devices
+    document.body.innerHTML+= "Input devices:<br>";
+    if (WebMidi.inputs.length < 1) {
+      document.body.innerHTML+= "No device detected.<br>";
+    } else {
+      WebMidi.inputs.forEach((device, index) => {
+        document.body.innerHTML+= `${index}: ${device.name} <br>`;
+      });
+    }
+    
+    // Display available MIDI output devices
+    document.body.innerHTML+= "Output devices:<br>";
+    if (WebMidi.outputs.length < 1) {
+      document.body.innerHTML+= "No device detected.<br>";
+    } else {
+      WebMidi.outputs.forEach((device, index) => {
+        document.body.innerHTML+= `${index}: ${device.name} <br>`;
+      });
+    }
+
+    const mySynthInput = WebMidi.getInputByName("Circuit Tracks")
+    const mySynthOutput = WebMidi.getOutputByName("Circuit Tracks")
+    
+    // // Listen for and print Note On messages on Ch1
+    // mySynthInput.channels[1].addListener("noteon", e => {
+    //   document.body.innerHTML+= `${e.note.identifier} <br>`;
+    // });
+
+    // Listen for and print Program Change messages on Ch1
+    mySynthInput.addListener("programchange", e => {
+      document.body.innerHTML+= `PC = ${e.value} <br>`;
+      // Send sysex command to dump current Synth 1 preset
+      mySynthOutput.sendSysex([0, 32, 41], [1, 100, 64, 0]);
+    }, {channels: [1]});
+
+    // Listen for and print Program Change messages on Ch2
+    mySynthInput.addListener("programchange", e => {
+      document.body.innerHTML+= `PC = ${e.value} <br>`;
+      // Send sysex command to dump current Synth 2 preset
+      mySynthOutput.sendSysex([0, 32, 41], [1, 100, 64, 1]);
+    }, {channels: [2]});
+
+    // Listen for and print Sysex messages
+    mySynthInput.addListener("sysex", e => {
+      // document.body.innerHTML+= `Sysex message = ${e.message.data} <br>`;  // Print whole sysex message for debug
+
+      if (e.message.data[6]==0) {    // identifies patch dump
+        // Print Synth number
+        document.body.innerHTML+= `Synth = ${e.message.data[7]} <br>`;
+
+        // Print Patch Name
+        const message = e.message.data;
+        const patchNameData = message.slice(8,25);
+        const patchNameString = String.fromCharCode.apply(null, patchNameData);
+        document.body.innerHTML+= `Patch name = ${patchNameString} <br>`;
+
+        // Print Patch Category
+        const patchCategoryData = e.message.data[25];
+        document.body.innerHTML+= `Category name = ${synthPatchCategories[patchCategoryData]} <br>`;
+      }
+      
+    });
+
+  }
+  
+</script>
+
+  </head>
+  
+  <body>
+    <h1>WebMidi.js Circuit Tracks Buddy v0.3</h1>
+  </body>
+
+</html>
