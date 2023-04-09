@@ -70,10 +70,12 @@
       document.body.innerHTML+= `Array content = ${cars} <br>`;
       document.body.innerHTML+= `Array content[1] = ${cars[1]} <br>`;
 
-      const message = e.message.data
+      const message = e.message.data;
       document.body.innerHTML+= `Message array = ${message} <br>`;
+      const patchName = message.slice(8,24);
+      document.body.innerHTML+= `patchName array = ${patchName} <br>`;
 
-      fullMessageAsString = String.fromCharCode.apply(null, message);
+      const fullMessageAsString = String.fromCharCode.apply(null, patchName);
       document.body.innerHTML+= `Message as a string = ${fullMessageAsString} <br>`;
 
       if (e.message.data[6]==0) {    // identifies patch dump
