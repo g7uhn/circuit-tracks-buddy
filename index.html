@@ -84,11 +84,14 @@
 
     // Listen for and print Sysex messages
     mySynthInput.addListener("sysex", e => {
-      // document.body.innerHTML+= `Sysex message = ${e.message.data} <br>`;  // Print whole sysex message for debug
+      document.body.innerHTML+= `Sysex message = ${e.message.data} <br>`;  // Print whole sysex message for debug
 
       if (e.message.data[6]==0) {    // identifies patch dump
+
+        document.body.innerHTML+= `Synth = ${e.message.data[7]} <br>`;
+
         if (e.message.data[7] == 0) {   // identifies Synth 1
-          
+          document.body.innerHTML+= 'Synth 1 patch change';
           const message = e.message.data;
           const patchNameData = message.slice(8,25);
           const patchNameString = String.fromCharCode.apply(null, patchNameData);
