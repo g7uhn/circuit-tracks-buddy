@@ -78,42 +78,37 @@
       if (e.message.data[6]==0) {    // identifies patch dump
 
         if (e.message.data[7] == 0) {   // identifies Synth 1
-          document.body.innerHTML+= 'Synth 1 patch change';
           const message = e.message.data;
           const patchNameData = message.slice(8,25);
           const patchNameString = String.fromCharCode.apply(null, patchNameData);
           const patchCategoryData = e.message.data[25];
-
-          // // Print patch details
-          // document.body.innerHTML+= `Synth = ${e.message.data[7]} <br>`;
-          // document.body.innerHTML+= `Patch name = ${patchNameString} <br>`;
-          // document.body.innerHTML+= `Category name = ${synthPatchCategories[patchCategoryData]} <br>`;
-
           // Update Synth 1 table elements
           document.getElementById('Synth1Program').innerHTML = latestPCvalue;
           document.getElementById('Synth1PatchName').innerHTML = patchNameString;
           document.getElementById('Synth1PatchCategory').innerHTML = synthPatchCategories[patchCategoryData];
-        }
-
-        if (e.message.data[7] == 1) {   // identifies Synth 2
-          
-          const message = e.message.data;
-          const patchNameData = message.slice(8,25);
-          const patchNameString = String.fromCharCode.apply(null, patchNameData);
-          const patchCategoryData = e.message.data[25];
 
           // // Print patch details
           // document.body.innerHTML+= `Synth = ${e.message.data[7]} <br>`;
           // document.body.innerHTML+= `Patch name = ${patchNameString} <br>`;
           // document.body.innerHTML+= `Category name = ${synthPatchCategories[patchCategoryData]} <br>`;
+        }
 
+        if (e.message.data[7] == 1) {   // identifies Synth 2
+          const message = e.message.data;
+          const patchNameData = message.slice(8,25);
+          const patchNameString = String.fromCharCode.apply(null, patchNameData);
+          const patchCategoryData = e.message.data[25];
           // Update Synth 2 table elements
           document.getElementById('Synth2Program').innerHTML = latestPCvalue;
           document.getElementById('Synth2PatchName').innerHTML = patchNameString;
           document.getElementById('Synth2PatchCategory').innerHTML = synthPatchCategories[patchCategoryData];
+
+          // // Print patch details
+          // document.body.innerHTML+= `Synth = ${e.message.data[7]} <br>`;
+          // document.body.innerHTML+= `Patch name = ${patchNameString} <br>`;
+          // document.body.innerHTML+= `Category name = ${synthPatchCategories[patchCategoryData]} <br>`;
         }
 
-        
       }
       
     });
@@ -125,7 +120,7 @@
   </head>
   
   <body>
-    <h1>WebMidi.js Circuit Tracks Buddy v0.3</h1>
+    <h1>WebMidi.js Circuit Tracks Buddy v0.4</h1>
 
     <!-- Table to list data  -->
     <table id="table">
