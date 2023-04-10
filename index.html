@@ -66,6 +66,8 @@
     //   mySynthOutput.sendSysex([0, 32, 41], [1, 100, 64, 1]);  // Send sysex command to dump current Synth 2 preset
     // }
 
+    // THINK THIS MIGHT HAVE BEEN WORKING ABOVE BUT HAD A BAD MIDI CONNECTION!
+
     let latestPCvalue = 0
 
     // Listen for and print Program Change messages on Ch1 and trigger preset dump
@@ -125,11 +127,16 @@
 </script>
 
   <style>
-    table, th, td {
+    @media screen and (max-width: 800px)  {
+      table {
+        width: 100%; /* The width is 100% when the viewport is 800px or smaller */
+      }
+    }
+    table, td {
       border: 1px solid black;
       border-collapse: collapse;
     }
-    th, td {
+    td {
       padding: 15px;
     }
   </style>
