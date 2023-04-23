@@ -5,7 +5,7 @@ Plug your phone/laptop into the CT's USB port, open this link in Chrome and you 
 
 Enjoy
 
-##Some techie details... :-)
+### Some techie details... :-)
 I don't actually know much about web coding or anything to do with software really so this is me:
 - understanding the form of the sysex patch dump messages described in the Circuit Tracks Programmer's Guide
 - hacking together some javascript from a few Web MIDI examples around the web
