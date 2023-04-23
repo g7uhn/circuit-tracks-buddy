@@ -5,6 +5,8 @@ Plug your phone/laptop into the CT's USB port, open this link in Chrome and you 
 
 Enjoy
 
+![Circuit Tracks Buddy serving suggestion](http://github.com/g7uhn/circuit-tracks-buddy/CT_Buddy_serving_suggestion.png)
+
 ### Some techie details... :-)
 I don't actually know much about web coding or anything to do with software really so this is me:
 - understanding the form of the sysex patch dump messages described in the Circuit Tracks Programmer's Guide
