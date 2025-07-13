@@ -1,7 +1,7 @@
 # Circuit Tracks Buddy
 A simple Web MIDI app that runs as a sidecar display to your Circuit Tracks and shows the current synth patch names and categories.
 
-Plug your phone/laptop into the CT's USB port, [open this link in Chrome]((https://circuit-tracks-buddy-3w89g.ondigitalocean.app/)) and you now have a little sidecar display that at least gives you some idea of what you're playing and what to look for next time.  It's not going to set the world on fire, but it helps me orientate myself around the synth preset pages and know what the name of 'that patch' is when I come across something I like.
+Plug your phone/laptop into the CT's USB port, [open this link in Chrome](https://circuit-tracks-buddy-3w89g.ondigitalocean.app/), say yes to whatever pop-ups appear concerning WebMIDI, and you now have a little sidecar display that at least gives you some idea of what you're playing and what to look for next time.  It's not going to set the world on fire, but it helps me orientate myself around the synth preset pages and know what the name of 'that patch' is when I come across something I like.
 
 Enjoy
 
